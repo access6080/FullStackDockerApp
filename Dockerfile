@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY pom.xml .
 
+#Install dependencies in pom.xml
 RUN mvn dependency:go-offline -B
 
 COPY src ./src
 
+# Create jar file
 RUN mvn package -DskipTests
 
 # Use Alpine Linux as the base image
@@ -29,7 +31,8 @@ COPY --from=build  /app/target/fsda.jar  /app/fsda.jar
 # Expose port 80 for Nginx
 EXPOSE 80
 
-EXPOSE 8080
+# Expose port for 8080 for Spring Boot (Development Only)  -> Uncomment when needed
+#EXPOSE 8080
 
 # Start both Nginx and the Java application using supervisord
 RUN apk --no-cache add supervisor
