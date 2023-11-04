@@ -29,7 +29,7 @@ RUN apk --no-cache add  openjdk17-jre
 COPY --from=build  /app/target/fsda.jar  /app/fsda.jar
 
 # Expose port 80 for Nginx
-EXPOSE 80
+EXPOSE 80 2222 8080
 
 # Expose port for 8080 for Spring Boot (Development Only)  -> Uncomment when needed
 #EXPOSE 8080
