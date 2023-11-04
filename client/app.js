@@ -2,11 +2,14 @@ const root = document.getElementById("root");
 
 const init = async () => {
     //fetch data
-    const data = await fetch("http://localhost:8080/api/v1/name/Geoffery")
+    try {
+        const data = await fetch("http://localhost:8080/api/v1/name/Geoffery")
+        root.innerText =  await data.text();
+    } catch (e) {
 
-    if(!data.ok) {
+        console.log(e)
         root.innerText =  "Hello World";
-        return
     }
-    root.innerText =  await data.text();
+    
+    
 }
