@@ -16,8 +16,8 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
     - run: |
-        docker build . -t ${{ secrets.CONTAINER_SERVER }}.io/myapp:${{ github.sha }}
-        docker push mycontainer.azurecr.io/myapp:${{ github.sha }}     
+        docker build . -t ${{ secrets.CONTAINER_SERVER }}/myapp:${{ github.sha }}
+        docker push ${{ secrets.CONTAINER_SERVER }}/myapp:${{ github.sha }}     
 
     - uses: azure/webapps-deploy@v2
       with:
